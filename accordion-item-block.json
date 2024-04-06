@@ -1,0 +1,109 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wecodeart/accordion-item",
+	"title": "Accordion Item",
+	"parent": [
+		"wecodeart/accordion"
+	],
+	"category": "wca",
+	"description": "Hide and show additional content.",
+	"keywords": [
+		"accordion",
+		"summary",
+		"toggle",
+		"disclosure"
+	],
+	"icon": "arrow-down-alt2",
+	"textdomain": "default",
+	"attributes": {
+		"isOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"summary": {
+			"type": "string",
+			"source": "html",
+			"selector": "button"
+		},
+		"tagName": {
+			"type": "string",
+			"default": "div",
+			"enum": [
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6",
+				"p",
+				"div"
+			]
+		},
+		"templateLock": {
+			"type": [
+				"string",
+				"boolean"
+			],
+			"enum": [
+				"all",
+				"insert",
+				"contentOnly",
+				false
+			]
+		},
+		"allowedBlocks": {
+			"type": "array"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"ariaLabel": true,
+		"html": false,
+		"align": false,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"width": true,
+			"radius": true,
+			"style": true
+		},
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": false,
+			"blockGap": false,
+			"__experimentalDefaultControls": {
+				"margin": true,
+				"padding": false,
+				"blockGap": false
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}, 
+		"interactivity": true,
+		"__experimentalStyles": true,
+		"__experimentalSettings": true
+	},
+	"viewScriptModule": "@wecodeart/collapse"
+}

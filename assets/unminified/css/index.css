@@ -1,0 +1,100 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./inc/support/modules/accordion/src/scss/index.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+.wp-accordion {
+  --wp--accordion-transition: all 0.15s ease;
+  --wp--accordion-border-color: var(--wp--preset--color--accent);
+  --wp--accordion-border-width: 1px;
+  --wp--accordion-border-radius: 5px;
+  --wp--accordion-inner-border-radius: calc(var(--wp--accordion-border-radius) - (var(--wp--accordion-border-width)));
+  --wp--accordion-btn-padding-x: 1.25rem;
+  --wp--accordion-btn-padding-y: 1rem;
+  --wp--accordion-btn-color: ;
+  --wp--accordion-btn-bg: ;
+  --wp--accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23212529%27%3e%3cpath fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e");
+  --wp--accordion-btn-icon-width: 1.25rem;
+  --wp--accordion-btn-icon-transform: rotate(-180deg);
+  --wp--accordion-btn-icon-transition: transform 0.2s ease-in-out;
+  --wp--accordion-btn-focus-border-color: var(--wp--preset--color--primary);
+  --wp--accordion-btn-focus-box-shadow: 0 0 0 1px var(--wp--accordion-btn-focus-border-color);
+  --wp--accordion-body-padding-x: 1.25rem;
+  --wp--accordion-body-padding-y: 1rem;
+  --wp--accordion-active-color: var(--wp--preset--color--primary);
+  --wp--accordion-active-bg: var(--wp--preset--color--accent);
+}
+.wp-accordion-item {
+  border: var(--wp--accordion-border-width) solid var(--wp--accordion-border-color);
+}
+.wp-accordion-item[open] > .wp-accordion-item__content {
+  display: block;
+}
+.wp-accordion-item:first-of-type {
+  border-top-left-radius: var(--wp--accordion-border-radius);
+  border-top-right-radius: var(--wp--accordion-border-radius);
+}
+.wp-accordion-item:first-of-type > * > .wp-accordion-item__button {
+  border-top-left-radius: var(--wp--accordion-border-radius);
+  border-top-right-radius: var(--wp--accordion-border-radius);
+}
+.wp-accordion-item:last-of-type {
+  border-bottom-left-radius: var(--wp--accordion-border-radius);
+  border-bottom-right-radius: var(--wp--accordion-border-radius);
+}
+.wp-accordion-item:last-of-type > * > .wp-accordion-item__button:not([aria-expanded=true]), .wp-accordion-item:last-of-type > .wp-accordion-item__content {
+  border-bottom-left-radius: var(--wp--accordion-border-radius);
+  border-bottom-right-radius: var(--wp--accordion-border-radius);
+}
+.wp-accordion-item:not(:first-of-type) {
+  border-top: 0;
+}
+.wp-accordion-item__header {
+  margin: 0;
+}
+.wp-accordion-item__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--wp--accordion-btn-padding-y) var(--wp--accordion-btn-padding-x);
+  font-size: 1rem;
+  text-align: left;
+  color: var(--wp--accordion-btn-color);
+  background-color: var(--wp--accordion-btn-bg);
+  border: 0;
+  border-radius: 0;
+  overflow-anchor: none;
+  transition: var(--wp--accordion-transition);
+  cursor: pointer;
+}
+.wp-accordion-item__button:not(.collapsed) {
+  background-color: var(--wp--accordion-active-bg);
+  color: var(--wp--accordion-active-color);
+}
+.wp-accordion-item__button:focus {
+  z-index: 3;
+  border-color: var(--wp--accordion-btn-focus-border-color);
+  box-shadow: var(--wp--accordion-btn-focus-box-shadow);
+  outline: 0;
+}
+[open] .wp-accordion-item__button::after, .wp-accordion-item__button[aria-expanded=true]::after {
+  transform: var(--wp--accordion-btn-icon-transform);
+}
+.wp-accordion-item__button::after {
+  content: "";
+  flex-shrink: 0;
+  width: var(--wp--accordion-btn-icon-width);
+  height: var(--wp--accordion-btn-icon-width);
+  background-image: var(--wp--accordion-btn-icon);
+  background-repeat: no-repeat;
+  background-size: var(--wp--accordion-btn-icon-width);
+  transition: var(--wp--accordion-btn-icon-transition);
+}
+.wp-block > .wp-accordion-item__content {
+  display: none;
+}
+.wp-accordion-item__body {
+  padding: var(--wp--accordion-body-padding-y) var(--wp--accordion-body-padding-x);
+}
+
+/*# sourceMappingURL=index.css.map*/

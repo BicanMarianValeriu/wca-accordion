@@ -1,0 +1,107 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wecodeart/accordion",
+	"title": "Accordion",
+	"category": "wca",
+	"description": "Hide and show additional content.",
+	"keywords": [
+		"accordion",
+		"summary",
+		"toggle",
+		"disclosure"
+	],
+	"icon": "menu-alt",
+	"textdomain": "default",
+	"allowedBlocks": [
+		"wecodeart/accordion-item"
+	],
+	"attributes": {
+		"tagName": {
+			"type": "string",
+			"default": "div",
+			"enum": [
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6",
+				"p",
+				"div"
+			]
+		},
+		"multiExpand": {
+			"type": "boolean",
+			"default": true
+		},
+		"schema": {
+			"type": "boolean",
+			"default": false
+		},
+		"templateLock": {
+			"type": [
+				"string",
+				"boolean"
+			],
+			"enum": [
+				"all",
+				"insert",
+				"contentOnly",
+				false
+			]
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"ariaLabel": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"width": true,
+			"radius": true,
+			"style": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"layout": {
+			"allowEditing": false
+		},
+		"interactivity": true,
+		"__experimentalStyles": true,
+		"__experimentalSettings": true
+	},
+	"viewScriptModule": "file:./accordionView.js"
+}
