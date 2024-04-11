@@ -85,9 +85,13 @@
   flex-shrink: 0;
   width: var(--wp--accordion-btn-icon-width);
   height: var(--wp--accordion-btn-icon-width);
-  background-image: var(--wp--accordion-btn-icon);
-  background-repeat: no-repeat;
-  background-size: var(--wp--accordion-btn-icon-width);
+  -webkit-mask-image: var(--wp--accordion-btn-icon);
+          mask-image: var(--wp--accordion-btn-icon);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: var(--wp--accordion-btn-icon-width);
+          mask-size: var(--wp--accordion-btn-icon-width);
+  background-color: currentColor;
   transition: var(--wp--accordion-btn-icon-transition);
 }
 .wp-block > .wp-accordion-item__content {
