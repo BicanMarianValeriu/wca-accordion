@@ -161,9 +161,10 @@
                 flex-shrink: 0;
                 width: var(--wp--accordion-btn-icon-width);
                 height: var(--wp--accordion-btn-icon-width);
-                background-image: var(--wp--accordion-btn-icon);
-                background-repeat: no-repeat;
-                background-size: var(--wp--accordion-btn-icon-width);
+                mask-image: var(--wp--accordion-btn-icon);
+                mask-repeat: no-repeat;
+                mask-size: var(--wp--accordion-btn-icon-width);
+                background-color: currentColor;
                 transition: var(--wp--accordion-btn-icon-transition);
             }
         }
