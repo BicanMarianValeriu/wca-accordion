@@ -9,7 +9,7 @@
  * @subpackage 	Support\Modules\Formatting
  * @copyright   Copyright (c) 2024, WeCodeArt Framework
  * @since 		6.3.7
- * @version		6.3.7
+ * @version		6.4.2
  */
 
 namespace WeCodeArt\Support\Modules;
@@ -81,7 +81,7 @@ final class Accordion implements Integration {
 	 * @return 	string 	The block markup.
 	 */
 	public function render_accordion( array $attributes = [], string $content = '' ): string {
-		$p = new \WP_HTML_Tag_Processor( $content );
+		$p = wecodeart( 'dom' )::processor( $content );
 		$p->next_tag();
 
 		$accordion_id = $p->get_attribute( 'id' ) ?: wp_unique_id( 'wp-accordion-' );
@@ -113,7 +113,7 @@ final class Accordion implements Integration {
 	public function render_accordion_item( array $attributes = [], string $content = '', object $block = null ): string {
 		$is_open = get_prop( $attributes, [ 'isOpen' ], false );
 
-		$p = new \WP_HTML_Tag_Processor( $content );
+		$p = wecodeart( 'dom' )::processor( $content );
 		$p->next_tag();
 
 		$item_id = $p->get_attribute( 'id' ) ?: wp_unique_id( 'wp-accordion-item-' );
@@ -145,7 +145,7 @@ final class Accordion implements Integration {
 		if ( $p->next_tag( [
 			'class_name' => 'wp-accordion-item__content'
 		] ) ) {
-			$p->set_attribute( 'aria-labeledby', $item_id . '-toggle' );
+			$p->set_attribute( 'aria-labelledby', $item_id . '-toggle' );
 			$p->set_attribute( 'id', $item_id . '-content' );
 			$p->set_attribute( 'role', 'region' );
 			$p->add_class( 'collapse' );
