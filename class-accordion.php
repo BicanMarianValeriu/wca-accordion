@@ -9,7 +9,7 @@
  * @subpackage 	Support\Modules\Formatting
  * @copyright   Copyright (c) 2024, WeCodeArt Framework
  * @since 		6.3.7
- * @version		6.4.2
+ * @version		6.4.5
  */
 
 namespace WeCodeArt\Support\Modules;
@@ -126,12 +126,12 @@ final class Accordion implements Integration {
 
 		if ( $p->next_tag( [
 			'class_name'=> 'wp-accordion-item__button'
-			] ) ) {
+		] ) ) {
 			$p->set_attribute( 'data-wp-bind--aria-label', 'state.ariaLabel' );
 			$p->set_attribute( 'data-wp-bind--aria-expanded', 'context.isOpen' );
 			$p->set_attribute( 'data-wp-on--click', 'actions.toggle' );
 			$p->set_attribute( 'data-wp-class--collapsed', '!context.isOpen' );
-			$p->set_attribute( 'aria-controls', $item_id . '-content' );
+			$p->set_attribute( 'aria-controls', '#' . $item_id . '-content' );
 			$p->set_attribute( 'aria-label', $is_open ? esc_html__( 'Close item', 'wecodeart' ) : esc_html__( 'Open item', 'wecodeart' ) );
 			$p->set_attribute( 'aria-expanded', $is_open ? 'true' : 'false' );
 			$p->set_attribute( 'id', $item_id . '-toggle' );
