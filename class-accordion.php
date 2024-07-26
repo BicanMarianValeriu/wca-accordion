@@ -9,15 +9,15 @@
  * @subpackage 	Support\Modules\Formatting
  * @copyright   Copyright (c) 2024, WeCodeArt Framework
  * @since 		6.3.7
- * @version		6.4.5
+ * @version		6.5.2
  */
 
 namespace WeCodeArt\Support\Modules;
 
 defined( 'ABSPATH' ) || exit;
 
-use WeCodeArt\Config\Traits\Asset;
-use WeCodeArt\Config\Traits\Singleton;
+
+use WeCodeArt\Config\Traits\{ Asset, Singleton, No_Conditionals };
 use WeCodeArt\Config\Interfaces\Integration;
 use function WeCodeArt\Functions\get_prop;
 use function WeCodeArt\Functions\toJSON;
@@ -29,17 +29,7 @@ final class Accordion implements Integration {
 
     use Asset;
     use Singleton;
-
-	/**
-	 * Get Conditionals
-	 *
-	 * @return void
-	 */
-	public static function get_conditionals() {
-		wecodeart( 'ifso' )->register( 'has_wp_interactivity', Accordion\Condition::class );
-
-		return [ 'has_wp_interactivity' ];
-	}
+	use No_Conditionals;
 
 	/**
 	 * Send to Constructor
@@ -131,7 +121,7 @@ final class Accordion implements Integration {
 			$p->set_attribute( 'data-wp-bind--aria-expanded', 'context.isOpen' );
 			$p->set_attribute( 'data-wp-on--click', 'actions.toggle' );
 			$p->set_attribute( 'data-wp-class--collapsed', '!context.isOpen' );
-			$p->set_attribute( 'aria-controls', '#' . $item_id . '-content' );
+			$p->set_attribute( 'aria-controls', $item_id . '-content' );
 			$p->set_attribute( 'aria-label', $is_open ? esc_html__( 'Close item', 'wecodeart' ) : esc_html__( 'Open item', 'wecodeart' ) );
 			$p->set_attribute( 'aria-expanded', $is_open ? 'true' : 'false' );
 			$p->set_attribute( 'id', $item_id . '-toggle' );
