@@ -9,7 +9,7 @@
  * @subpackage 	Support\Modules\Formatting
  * @copyright   Copyright (c) 2024, WeCodeArt Framework
  * @since 		6.3.7
- * @version		6.5.2
+ * @version		6.5.5
  */
 
 namespace WeCodeArt\Support\Modules;
@@ -35,8 +35,7 @@ final class Accordion implements Integration {
 	 * Send to Constructor
 	 */
 	public function register_hooks() {
-		\add_action( 'init',						[ $this, 'register_block'	], 20, 1 );
-		\add_action( 'enqueue_block_editor_assets',	[ $this, 'editor_assets'	], 20, 1 );
+		\add_action( 'init',	[ $this, 'register_block'	], 20, 1 );
 	}
 
 	/**
@@ -45,14 +44,6 @@ final class Accordion implements Integration {
 	 * @return  void
 	 */
 	public function register_block(): void {
-		\wp_enqueue_block_style( 'wecodeart/accordion', [
-			'handle' 	=> $this->make_handle(),
-			'src'		=> $this->get_asset( 'css', 'index' ),
-			'path'		=> $this->get_asset( 'css', 'index', true ),
-			'deps'		=> [],
-			'ver'		=> wecodeart( 'version' )
-		] );
-
 		\register_block_type_from_metadata( dirname( __FILE__ ) . '/accordion-block.json', [
 			'render_callback'   => [ $this, 'render_accordion' ],
 		] );
@@ -162,41 +153,5 @@ final class Accordion implements Integration {
 		$content = $p->get_updated_html();
 
 		return $content;
-	}
-	
-	/**
-	 * Editor assets.
-	 *
-	 * @return  void
-	 */
-	public function editor_assets(): void {
-		wp_enqueue_script(
-			$this->make_handle(),
-			$this->get_asset( 'js', 'index' ),
-			[ 'wp-block-editor', 'wp-blocks', 'wp-rich-text', 'wp-components', 'wp-data', 'wp-i18n' ],
-			wecodeart( 'version' )
-		);
-	}
-
-	/**
-	 * Get file.
-	 *
-	 * @return string
-	 */
-	public function get_asset( string $type, string $name, bool $path = false ): string {
-		$file_path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
-		$file_name = wecodeart_if( 'is_dev_mode' ) ? $name . '.' . $type :  $name . '.min.' . $type;
-		$file_path = '/assets/' . $file_path . '/' . $type . '/' . $file_name;
-
-		if( $path ) {
-			$file_path = __DIR__ . $file_path;
-
-			return wp_normalize_path( $file_path );
-		}
-		
-		$file_uri 	= str_replace( realpath( get_template_directory() ), get_template_directory_uri(), __DIR__ );
-		$file_path 	= wp_normalize_path( $file_uri . $file_path );
-
-		return esc_url( $file_path );
 	}
 }

@@ -103,5 +103,7 @@
 		"__experimentalStyles": true,
 		"__experimentalSettings": true
 	},
+	"editorScript": "file:./assets/minified/js/index.min.js",
+	"viewStyle": "file:./assets/minified/css/index.min.css",
 	"viewScriptModule": "file:./accordionView.js"
 }
