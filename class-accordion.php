@@ -9,7 +9,7 @@
  * @subpackage 	Support\Modules\Formatting
  * @copyright   Copyright (c) 2024, WeCodeArt Framework
  * @since 		6.3.7
- * @version		6.5.5
+ * @version		6.6.0
  */
 
 namespace WeCodeArt\Support\Modules;
@@ -35,7 +35,7 @@ final class Accordion implements Integration {
 	 * Send to Constructor
 	 */
 	public function register_hooks() {
-		\add_action( 'init',	[ $this, 'register_block'	], 20, 1 );
+		\add_action( 'init', [ $this, 'register_block' ], 20, 1 ); 
 	}
 
 	/**
@@ -50,7 +50,29 @@ final class Accordion implements Integration {
 			
 		\register_block_type_from_metadata( dirname( __FILE__ ) . '/accordion-item-block.json', [
 			'render_callback' => [ $this, 'render_accordion_item' ]
+		] ); 
+		
+		\wp_enqueue_block_style( 'wecodeart/accordion', [
+			'handle' => 'wp-block-wecodeart-accordion',
+			'src' 	=> $this->get_asset( 'css', 'index' ),
+			'path' 	=> $this->get_asset( 'css', 'index', 'directory' ),
+			'ver' 	=> wecodeart( 'version' ),
 		] );
+
+		\wp_register_script( 
+			'wp-block-wecodeart-accordion',
+			$this->get_asset( 'js', 'index' ),
+			[
+				'wp-i18n',
+				'wp-data',
+				'wp-blocks',
+				'wp-editor',
+				'wp-element',
+				'wp-components',
+			],
+			wecodeart( 'version' ), 
+			true 
+		);
 	}
 
 	/**
@@ -153,5 +175,23 @@ final class Accordion implements Integration {
 		$content = $p->get_updated_html();
 
 		return $content;
+	}
+
+	/**
+	 * Get file.
+	 *
+	 * @return string
+	 */
+	public function get_asset( string $type, string $name, string $path = 'uri' ): string {
+		$file_path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
+		$file_name = wecodeart_if( 'is_dev_mode' ) ? $name . '.' . $type :  $name . '.min.' . $type;
+		$file_path = wecodeart_config( 'paths' )[$path] . '/inc/support/modules/accordion/assets/' . $file_path . '/' . $type . '/' . $file_name;
+		$file_path = wp_normalize_path( $file_path );
+
+		if( $path === 'uri' ) {
+			return esc_url( $file_path );
+		}
+
+		return $file_path;
 	}
 }

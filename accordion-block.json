@@ -103,7 +103,11 @@
 		"__experimentalStyles": true,
 		"__experimentalSettings": true
 	},
-	"editorScript": "file:./assets/minified/js/index.min.js",
-	"viewStyle": "file:./assets/minified/css/index.min.css",
+	"editorScript": [
+		"wp-block-wecodeart-accordion"
+	],
+	"viewStyle": [
+		"wp-block-wecodeart-accordion"
+	],
 	"viewScriptModule": "file:./accordionView.js"
 }

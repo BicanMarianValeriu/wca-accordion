@@ -1,6 +1,11 @@
 import { store, getContext, getElement } from '@wordpress/interactivity';
 
-const { Events } = wecodeart;
+const { Events } = window.wecodeart || {};
+
+if (typeof Events === 'undefined') {
+    console.warn('WeCodeArt\'s Accordion require WeCodeArt\'s Events plugin.');
+}
+
 let elementsCache = [];
 
 const NAME = 'accordion';
