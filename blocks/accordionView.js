@@ -1,12 +1,12 @@
 import { store, getContext, getElement } from '@wordpress/interactivity';
 
-const { Events } = window.wecodeart || {};
+const { Events, Selector } = window.wecodeart || {};
 
-if (typeof Events === 'undefined') {
-    console.warn('WeCodeArt\'s Accordion require WeCodeArt\'s Events plugin.');
+if (typeof Events === 'undefined' || typeof Selector === 'undefined') {
+    console.warn('WeCodeArt\'s Accordion require WeCodeArt\'s Events & Selector plugins.');
 }
 
-let elementsCache = [];
+let accordionsElementsCache = [];
 
 const NAME = 'accordion';
 const NAMESPACE = `wecodeart/${NAME}`;
@@ -22,7 +22,7 @@ store(NAMESPACE, {
 
             const { ref } = getElement();
 
-            const elements = elementsCache.filter(({ parent }) => parent === ref);
+            const elements = accordionsElementsCache.filter(({ parent }) => parent === ref);
 
             elements.forEach(({ content }) => Events.on(content, 'show.wp.collapse', ({ currentTarget }) => {
                 const hasOpen = elements.filter(({ content, context: { isOpen } }) => content !== currentTarget && isOpen);
@@ -32,11 +32,11 @@ store(NAMESPACE, {
         addElement() {
             const { ref } = getElement();
 
-            elementsCache = [...elementsCache, {
+            accordionsElementsCache = [...accordionsElementsCache, {
                 context: getContext('wecodeart/collapse'),
                 parent: ref.closest('.wp-accordion'),
-                toggle: ref.querySelector('.wp-accordion-item__button'),
-                content: ref.querySelector('.wp-accordion-item__content'),
+                toggle: Selector.findOne('.wp-accordion-item__button', ref),
+                content: Selector.findOne('.wp-accordion-item__content', ref),
             }];
         }
     }
