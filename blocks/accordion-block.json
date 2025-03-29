@@ -52,6 +52,7 @@
 			]
 		}
 	},
+	"render": "file:./render-accordion.php",
 	"supports": {
 		"anchor": true,
 		"ariaLabel": true,
