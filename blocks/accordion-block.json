@@ -33,7 +33,7 @@
 		},
 		"multiExpand": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		},
 		"schema": {
 			"type": "boolean",

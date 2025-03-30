@@ -13,21 +13,31 @@ const NAMESPACE = `wecodeart/${NAME}`;
 
 store(NAMESPACE, {
     callbacks: {
-        multiExpand() {
+        onAccordionChange() {
             const { multiExpand } = getContext();
 
-            if (multiExpand) {
-                return;
-            }
-
             const { ref } = getElement();
+            const context = getContext();
 
             const elements = accordionsElementsCache.filter(({ parent }) => parent === ref);
+            context.isOpened = elements.filter(({ context: { isOpen } }) => isOpen);
 
-            elements.forEach(({ content }) => Events.on(content, 'show.wp.collapse', ({ currentTarget }) => {
-                const hasOpen = elements.filter(({ content, context: { isOpen } }) => content !== currentTarget && isOpen);
-                hasOpen.map(({ toggle }) => toggle.click());
-            }));
+            elements.forEach((el) =>{
+                Events.on(el.content, 'show.wp.collapse', () => {
+                    context.isOpened = [...context.isOpened.filter(({ content }) => el.content !== content), el];
+    
+                    if (multiExpand) {
+                        return false;
+                    }
+    
+                    const hasOpen = elements.filter(({ content, context: { isOpen } }) => isOpen && content !== el.content);
+                    hasOpen.forEach(({ toggle }) => toggle.click());
+                });
+
+                Events.on(el.content, 'shown.wp.collapse', () => {
+                    context.isOpened = [...context.isOpened.filter(({ content }) => el.content !== content), el];
+                });
+            });
         },
         addElement() {
             const { ref } = getElement();

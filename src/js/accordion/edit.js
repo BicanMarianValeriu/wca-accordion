@@ -2,7 +2,10 @@
  * WordPress dependencies
  */
 const {
-    i18n: { __, sprintf },
+    i18n: {
+        __,
+        sprintf
+    },
     blockEditor: {
         useBlockProps,
         useInnerBlocksProps,
@@ -23,8 +26,10 @@ const {
     },
 } = wp;
 
+import accordionItemBlock from './../../../blocks/accordion-item-block.json';
+
 const TEMPLATE = [
-    ['wecodeart/accordion-item'],
+    [accordionItemBlock.name],
 ];
 
 const DEFAULT_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div'];
@@ -113,7 +118,7 @@ function TagToolbar({
 }
 
 function edit({ attributes, setAttributes, clientId }) {
-    const { multiExpand, tagName, templateLock } = attributes;
+    const { multiExpand, allClosed, tagName, templateLock } = attributes;
 
     const blockProps = useBlockProps({
         className: 'wp-accordion'
@@ -123,7 +128,7 @@ function edit({ attributes, setAttributes, clientId }) {
         __experimentalCaptureToolbars: true,
         template: TEMPLATE,
         templateLock,
-        allowedBlocks: ['wecodeart/accordion-item'],
+        allowedBlocks: [accordionItemBlock.name],
     });
 
     const registry = useRegistry();
@@ -145,10 +150,9 @@ function edit({ attributes, setAttributes, clientId }) {
             <InspectorControls>
                 <PanelBody title={__('Settings')}>
                     <ToggleControl
-                        label={__('Multi Expand', 'wecodeart')}
+                        label={__('Allow expanding multiple panes', 'wecodeart')}
                         checked={multiExpand}
                         onChange={() => setAttributes({ multiExpand: !multiExpand })}
-                        help={multiExpand && __('Multiple accordion panes can be opened at the same time.', 'wecodeart')}
                     />
                 </PanelBody>
             </InspectorControls>

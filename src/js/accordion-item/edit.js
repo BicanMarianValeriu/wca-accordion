@@ -1,7 +1,8 @@
 /**
  * WordPress dependencies
  */
-import { TagToolbar } from './../edit';
+import { TagToolbar } from './../accordion';
+
 const {
     i18n: { __ },
     blockEditor: {

@@ -3,7 +3,7 @@
  */
 const { useBlockProps, InnerBlocks } = wp.blockEditor;
 
-export default function save({ attributes }) {
+export default function save() {
     const blockProps = useBlockProps.save({
         className: 'wp-accordion'
     });

@@ -1,7 +1,4 @@
 const {
-    i18n: {
-        __
-    },
     blocks: {
         registerBlockType
     },
@@ -11,34 +8,10 @@ const {
 /**
  * Internal dependencies
  */
-import metadata from './../../accordion-block.json';
-import edit from './edit';
-import save from './save';
-import accordionItem from './item';
+import accordionBlock from './accordion';
+import accordionItemBlock from './accordion-item';
 
 import './../scss/index.scss';
-
-const { name } = metadata;
-const settings = {
-    example: {
-        innerBlocks: [
-            {
-                name: 'wecodeart/accordion-item',
-                attributes: {
-                    summary: __('Lorem ipsum dolor sit')
-                },
-            },
-            {
-                name: 'wecodeart/accordion-item',
-                attributes: {
-                    summary: __('Lorem ipsum dolor sit'),
-                },
-            },
-        ],
-    },
-    save,
-    edit,
-};
 
 function initBlock(block) {
     const { metadata, settings, name } = block;
@@ -47,10 +20,8 @@ function initBlock(block) {
 }
 
 const init = () => {
-    const accordionBlock = { name, metadata, settings };
-    
     initBlock(accordionBlock);
-    initBlock(accordionItem);
+    initBlock(accordionItemBlock);
 };
 
 domReady(() => init());

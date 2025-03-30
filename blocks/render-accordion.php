@@ -10,12 +10,11 @@ $p->set_attribute( 'id', $accordion_id );
 
 $p->set_attribute( 'data-wp-interactive', 'wecodeart/accordion' );
 $p->set_attribute( 'data-wp-context', toJSON( [
-    'multiExpand' 	=> get_prop( $attributes, [ 'multiExpand' ], true ),
+    'multiExpand' 	=> get_prop( $attributes, [ 'multiExpand' ], false ),
+    'allClosed' 	=> get_prop( $attributes, [ 'allClosed' ], false ),
+    'isOpened'		=> [],
     'elements'		=> [],
 ] ) );
-
-if( get_prop( $attributes, [ 'multiExpand' ] ) === false ) {
-    $p->set_attribute( 'data-wp-init--multiple', 'callbacks.multiExpand' );
-}
+$p->set_attribute( 'data-wp-init', 'callbacks.onAccordionChange' );
 
 echo $p->get_updated_html();
