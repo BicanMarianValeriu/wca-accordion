@@ -2,20 +2,6 @@
 
 use function WeCodeArt\Functions\{ get_prop, toJSON };
 
-\wp_interactivity_config( 'wecodeart/collapse', [
-    'ariaLabel'	=>	[
-        'collapsed' => esc_html__( 'Open item', 'wecodeart' ),
-        'expanded'	=> esc_html__( 'Close item', 'wecodeart' )
-    ],
-    'classNames' => [
-        'show' 			=> 'show',
-        'collapse' 		=> 'collapse',
-        'collapsing' 	=> 'collapsing'
-    ]
-] );
-
-\wecodeart( 'styles' )->Components->load( [ 'transition' ] );
-
 $is_open = get_prop( $attributes, [ 'isOpen' ], false );
 
 $p = wecodeart( 'dom' )::processor( $content );
