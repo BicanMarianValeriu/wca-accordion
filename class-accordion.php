@@ -30,6 +30,8 @@ final class Accordion implements Integration {
     use Singleton;
 	use No_Conditionals;
 
+	const VERSION = '1.0.7';
+
 	/**
 	 * Send to Constructor
 	 */
